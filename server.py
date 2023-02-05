@@ -17,7 +17,7 @@ while True:
 
     while True:
         while (len(data)) < payload_size:
-            packet = client_socket.recv(4 * 1024)
+            packet = c.recv(4 * 1024)
             if packet:
                 data += packet
             else:
@@ -28,7 +28,7 @@ while True:
         msg_size = struct.unpack("Q", packed_msg_size)[0]
 
         while len(data) < msg_size:
-            data += client_socket.recv(4 * 1024)
+            data += c.recv(4 * 1024)
 
         frame_data = data[:msg_size]
         data = data[msg_size:]
